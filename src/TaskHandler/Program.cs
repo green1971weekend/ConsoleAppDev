@@ -6,7 +6,7 @@ namespace Example1
 {
     class Program
     {
-        static bool correct_action;
+        static bool alive;
         static bool inner_action_check;
 
         static string inner_action_input;
@@ -14,6 +14,7 @@ namespace Example1
         static int inner_action_number;
         static int inner_action_number2;
 
+        #region Assigned collections of each day
         static List<string> mn_task = new List<string>();
         static List<string> ts_task = new List<string>();
         static List<string> wd_task = new List<string>();
@@ -21,19 +22,20 @@ namespace Example1
         static List<string> fr_task = new List<string>();
         static List<string> st_task = new List<string>();
         static List<string> sn_task = new List<string>();
+        #endregion Assigned collections of each day
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Scheduler of tasks v.1.0\n");
+            Console.WriteLine("Scheduler of tasks v.1.1\n");
 
             Days week_day;
               
             do
             {
-                correct_action = false;
+                alive = true;
                 Console.WriteLine("Введите цифрой действие, которое хотите совершить\n");
                 Console.WriteLine("1.Добавить задачу в определенный день\t 2.Сместить задачу на другой день\t 3.Удалить задачу");
-                Console.WriteLine("4.Отобразить назначенные задачи\t 5.Выход из программы");
+                Console.WriteLine("4.Отобразить назначенные задачи\t 5.Отбразить текущее время и дату\t  6.Выход из программы");
                 string action_input = Console.ReadLine();
                 switch (action_input)
                 {
@@ -45,15 +47,18 @@ namespace Example1
                             inner_action_check = Int32.TryParse(inner_action_input, out inner_action_number);
                         }
                         while (inner_action_number < 1 || inner_action_number > 7);
+                        Console.Clear();
 
                         //???вопрос, как можно с помощью цикла for или foreach забить все значения перечеслений переменной week_day чтобы сократить конструкцию ниже
-                        if(inner_action_number == 1) { week_day = Days.Monday; AddTask(week_day, inner_action_number); }
+                        #region For certain day assign enum variable and add new task
+                        if (inner_action_number == 1) { week_day = Days.Monday; AddTask(week_day, inner_action_number); }
                         if (inner_action_number == 2) { week_day = Days.Tuesday; AddTask(week_day, inner_action_number); }
                         if (inner_action_number == 3) { week_day = Days.Wednesday; AddTask(week_day, inner_action_number); }
                         if (inner_action_number == 4) { week_day = Days.Thursday; AddTask(week_day, inner_action_number); }
                         if (inner_action_number == 5) { week_day = Days.Friday; AddTask(week_day, inner_action_number); }
                         if (inner_action_number == 6) { week_day = Days.Saturday; AddTask(week_day, inner_action_number); }
                         if (inner_action_number == 7) { week_day = Days.Sunday; AddTask(week_day, inner_action_number); }
+                        #endregion     
                         break;
 
                     case "2":
@@ -62,16 +67,19 @@ namespace Example1
                             Console.WriteLine("Выберите цифрой, день недели, задачи которого хотите перенести: 1.Понедельник 2.Вторник 3.Среда 4.Четверг 5.Пятница 6.Суббота 7.Воскресенье\n");
                             inner_action_input = Console.ReadLine();
                             inner_action_check = Int32.TryParse(inner_action_input, out inner_action_number);
+                            Console.Clear();
                             Console.WriteLine("Выберите цифрой, день, в который хотите перенести задачи: 1.Понедельник 2.Вторник 3.Среда 4.Четверг 5.Пятница 6.Суббота 7.Воскресенье\n");
                             inner_action_input2 = Console.ReadLine();
                             inner_action_check = Int32.TryParse(inner_action_input2, out inner_action_number2);
-                            if ((inner_action_number < 1 || inner_action_number > 7) && (inner_action_number2 < 1 || inner_action_number2 > 7))
+                            if ((inner_action_number < 1 || inner_action_number > 7) || (inner_action_number2 < 1 || inner_action_number2 > 7))
                             {
                                 Console.WriteLine("Некорректный ввод данных, попробуйте заново");
-                            }
+                            }           
                         }
-                        while ((inner_action_number < 1 || inner_action_number > 7) && (inner_action_number2 < 1 || inner_action_number2 > 7));
+                        while ((inner_action_number < 1 || inner_action_number > 7) || (inner_action_number2 < 1 || inner_action_number2 > 7));
+                        Console.Clear();
                         //???как можно сократить данную конструкцию ниже
+                        #region Implement the replacement 
                         if (inner_action_number2 == 1) { ReplaceTask(inner_action_number, mn_task); }
                         if (inner_action_number2 == 2) { ReplaceTask(inner_action_number, ts_task); }
                         if (inner_action_number2 == 3) { ReplaceTask(inner_action_number, wd_task); }
@@ -79,22 +87,26 @@ namespace Example1
                         if (inner_action_number2 == 5) { ReplaceTask(inner_action_number, fr_task); }
                         if (inner_action_number2 == 6) { ReplaceTask(inner_action_number, st_task); }
                         if (inner_action_number2 == 7) { ReplaceTask(inner_action_number, sn_task); }
+                        #endregion
                         break;
                     case "3":
-                        Clear();
+                        Clear();        
                         break;
                     case "4":                  
                         Display();
                         break;
                     case "5":
-                        correct_action = true;
+                        DisplayDateTime();
+                        break;
+                    case "6":
+                        alive = false;
                         Console.WriteLine("Удачного времени суток!");
                         break;
                     default:
                         Console.WriteLine("Некорректный ввод");
                         break;
                 }                
-            } while (!correct_action);
+            } while (alive);
 
 
 
@@ -103,7 +115,7 @@ namespace Example1
 
         public static void AddTask(Days day,int number)
         {
-            Console.WriteLine("Опишите задачу которую хотите добавить в ваш список");
+            Console.WriteLine($"Опишите задачу которую хотите добавить на {day}");
             string input_task = Console.ReadLine();
 
             switch(number)
@@ -140,7 +152,8 @@ namespace Example1
             {
                 Console.WriteLine("Введите число");
             }
-            switch(inner_action_number)
+            Console.Clear();
+            switch (inner_action_number)
             {
                 case 1:
                     Console.WriteLine($"Ваши задачи на {Days.Monday}");
@@ -202,24 +215,38 @@ namespace Example1
             {
                 case 1:
                     week_day.AddRange(mn_task);
+                    mn_task.Clear();
+                    Console.WriteLine($"Задачи удачно перемещены из {Days.Monday}  ");
                     break;
                 case 2:
                     week_day.AddRange(ts_task);
+                    ts_task.Clear();
+                    Console.WriteLine($"Задачи удачно перемещены из {Days.Tuesday} ");
                     break;
                 case 3:
                     week_day.AddRange(wd_task);
+                    wd_task.Clear();
+                    Console.WriteLine($"Задачи удачно перемещены из {Days.Wednesday} ");
                     break;
                 case 4:
                     week_day.AddRange(th_task);
+                    th_task.Clear();
+                    Console.WriteLine($"Задачи удачно перемещены из {Days.Thursday} ");
                     break;
                 case 5:
                     week_day.AddRange(fr_task);
+                    fr_task.Clear();
+                    Console.WriteLine($"Задачи удачно перемещены из {Days.Friday} ");
                     break;
                 case 6:
                     week_day.AddRange(st_task);
+                    st_task.Clear();
+                    Console.WriteLine($"Задачи удачно перемещены из {Days.Saturday} ");
                     break;
                 case 7:
                     week_day.AddRange(sn_task);
+                    sn_task.Clear();
+                    Console.WriteLine($"Задачи удачно перемещены из {Days.Sunday} ");
                     break;
 
             }
@@ -231,6 +258,7 @@ namespace Example1
             {
                 Console.WriteLine("Введите число");
             }
+            Console.Clear();
             switch (inner_action_number)
             {
                 case 1:
@@ -265,8 +293,15 @@ namespace Example1
                     Console.WriteLine("Некорректный ввод");
                     break;
 
-            }
+            }         
         }
+
+        static public void DisplayDateTime()
+        {
+            Console.Clear(); 
+            Console.WriteLine(DateTime.Now);
+        }
+
     }
     enum Days
     {
