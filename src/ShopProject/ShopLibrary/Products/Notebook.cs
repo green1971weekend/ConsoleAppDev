@@ -4,6 +4,9 @@ using System.Text;
 
 namespace ShopLibrary
 {
+    /// <summary>
+    /// Класс ноутбук наследуемый от класса продукт
+    /// </summary>
     class Notebook : Product
     {
         /// <summary>
@@ -19,6 +22,9 @@ namespace ShopLibrary
             Amount = amount;
         }
 
+        /// <summary>
+        /// Получить информацию о продукте
+        /// </summary>
         public override void GetInfo()
         {
             Console.WriteLine($"Type:{ProductType.Notebook}, Company:{Company}, Model:{Model}, Amount:{Amount}");
