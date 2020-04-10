@@ -4,6 +4,9 @@ using System.Text;
 
 namespace ShopLibrary
 {
+    /// <summary>
+    /// Класс наушники наследуемый от класса продукт
+    /// </summary>
     class Headphone : Product
     {
         /// <summary>
@@ -18,7 +21,10 @@ namespace ShopLibrary
             Model = mdl;
             Amount = amount;
         }
-
+        
+        /// <summary>
+        /// Получить информацию о продукте
+        /// </summary>
         public override void GetInfo()
         {
             Console.WriteLine($"Type:{ProductType.Headphones}, Company:{Company}, Model:{Model}, Amount:{Amount}");

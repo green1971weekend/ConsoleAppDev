@@ -15,11 +15,11 @@ namespace Shop_Simulator_Test
             Phone phone = new Phone("Company", "Model", negative_amount);
 
             // Act
-            int actual_amount = phone.GetAmount();
+            int actual = phone.GetAmount();
 
             // Assert
-            int expected_amount = 0;
-            Assert.Equal(expected_amount, actual_amount);
+            int expected = 0;
+            Assert.Equal(expected, actual);
         }
 
 
@@ -31,11 +31,11 @@ namespace Shop_Simulator_Test
             Phone phone = new Phone("Company", "Model", zero_amount);
 
             // Act
-            int actual_amount = phone.GetAmount();
+            int actual = phone.GetAmount();
 
             // Assert
-            int expectedAmount = 0;
-            Assert.Equal(expectedAmount, actual_amount);
+            int expected = 0;
+            Assert.Equal(expected, actual);
         }
     }
     
