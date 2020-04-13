@@ -7,7 +7,7 @@ namespace ATM.BL
     /// <summary>
     /// Счет клиента
     /// </summary>
-    class Account
+     public class Account : IPayable
     {
         #region Assigning events
         /// <summary>
@@ -36,19 +36,21 @@ namespace ATM.BL
         /// <summary>
         /// Имя
         /// </summary>
-        public string Name { get; }
+        private string Name { get; }
         /// <summary>
         /// Фамилия
         /// </summary>
-        public string Surname { get; }
+        private string Surname { get; }
         /// <summary>
         /// Текущая сумма счета
         /// </summary>
-        public decimal CurrentSum { get; set; }
+        private decimal CurrentSum { get; set; } = 0;
         /// <summary>
         /// ID клиента
         /// </summary>
-        public int ID { get; }
+        private int ID { get; }
+
+        public CreditCard Card { get; set; } = null;
         #endregion
 
         /// <summary>
@@ -60,13 +62,21 @@ namespace ATM.BL
         /// </summary>
         /// <param name="id">ID счета</param>
         /// <param name="sum">Сумма счета</param>
-        public Account(int id, decimal sum)
+        public Account(string name, string surname, int id, decimal sum)
         {
+            #region Сheck input values
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException("Имя не должно быть пустым");
+            if (string.IsNullOrWhiteSpace(surname))
+                throw new ArgumentNullException("Фамилия не должна быть пустой");
             if (id < 1000)
                 throw new ArgumentException("Неккоректно указано ID", nameof(id));
             if (sum <= 0)
                 throw new ArgumentException("Должна быть указана корректная сумма, больше нуля", nameof(sum));
+            #endregion
 
+            Name = name;
+            Surname = surname;
             ID = id;
             CurrentSum = sum;
         }
@@ -76,7 +86,7 @@ namespace ATM.BL
         /// </summary>
         /// <param name="args">Вспомогательный класс обработки событий</param>
         /// <param name="handler">Обработчик событий</param>
-        public void CallEvent(AccountEventArgs args,AccountStateHandler handler)
+        private void CallEvent(AccountEventArgs args,AccountStateHandler handler)
         {
             if (args == null)
                 throw new Exception("При вызове определенного события, оно должно иметь содержание");
@@ -87,7 +97,7 @@ namespace ATM.BL
         /// Событие при добавлении средств на счет
         /// </summary>
         /// <param name="args">Вспомогательный класс обработки событий</param>
-        public void OnAdded(AccountEventArgs args)
+        private void OnAdded(AccountEventArgs args)
         {
             CallEvent(args, Added);
         }
@@ -95,7 +105,7 @@ namespace ATM.BL
         /// Событие при списании средств со счета
         /// </summary>
         /// <param name="args">Вспомогательный класс обработки событий</param>
-        public void OnWithdrawed(AccountEventArgs args)
+        private void OnWithdrawed(AccountEventArgs args)
         {
             CallEvent(args, Withdrawed);
         }
@@ -103,7 +113,7 @@ namespace ATM.BL
         /// Событие при открытии счета
         /// </summary>
         /// <param name="args">Вспомогательный класс обработки событий</param>
-        public void OnOpened(AccountEventArgs args)
+        private void OnOpened(AccountEventArgs args)
         {
             CallEvent(args, Opened);
         }
@@ -111,7 +121,7 @@ namespace ATM.BL
         /// Событие при закрытии счета
         /// </summary>
         /// <param name="args">Вспомогательный класс обработки событий</param>
-        public void OnClosed(AccountEventArgs args)
+        private void OnClosed(AccountEventArgs args)
         {
             CallEvent(args, Closed);
         }
@@ -119,7 +129,7 @@ namespace ATM.BL
         /// Событие при отображении текущего счета
         /// </summary>
         /// <param name="args">Вспомогательный класс обработки событий</param>
-        public void OnDisplayed(AccountEventArgs args)
+        private void OnDisplayed(AccountEventArgs args)
         {
             CallEvent(args, Displayed);
         }
@@ -145,17 +155,38 @@ namespace ATM.BL
         public void Withdraw(decimal sum)
         {
             if (sum <= 0 || sum > CurrentSum)
-                throw new ArgumentException("Должна быть указана корректная сумма", nameof(sum));
+                throw new ArgumentException("Должна быть указана корректная сумма, не превышающая текущую", nameof(sum));
             else
                 CurrentSum -= sum;
-                OnWithdrawed(new AccountEventArgs($"Со счета списана сумма в размере {sum}", sum));
+                OnWithdrawed(new AccountEventArgs($"Со счета списана сумма в размере {sum}", CurrentSum));
         }
         /// <summary>
-        /// Метод отображения текущего счета
+        /// Метод открытия счета
         /// </summary>
-        public void DisplayCurrentSum()
+        public void Open()
         {
-            OnDisplayed(new AccountEventArgs($"Ваш текущий баланс состовляет {CurrentSum}", CurrentSum));
+            OnOpened(new AccountEventArgs($"Открыт новый клиентский счет. ID cчета - {ID}", CurrentSum));
+        }
+        /// <summary>
+        /// Метод закрытия счета
+        /// </summary>
+        public void Close()
+        {
+            OnClosed(new AccountEventArgs($"Kлиентский счет успешно закрыт. ID cчета - {ID}", CurrentSum));
+        }
+        /// <summary>
+        /// Метод получения полной информации о клиенте
+        /// </summary>
+        public void DisplayAccountInfo()
+        {
+            OnDisplayed(new AccountEventArgs($"Имя: {Name}, Фамилия: {Surname}, Текущая сумма на счете: {CurrentSum}, ID: {ID}", CurrentSum));
+        }
+        /// <summary>
+        /// Создать новую карту для аккаунта
+        /// </summary>
+        public void CreateCreditCard()
+        {
+            OnOpened(new AccountEventArgs($"Кредитная карта успешно привязана к аккаунту ID: {ID} Запомните ваш пароль: {Card.Password}", CurrentSum));
         }
         #endregion
     }
