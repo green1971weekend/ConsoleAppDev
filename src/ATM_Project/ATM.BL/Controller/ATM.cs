@@ -20,7 +20,7 @@ namespace ATM.BL
         /// <summary>
         /// Конструктор создания банкомата
         /// </summary>
-        /// <param name="bank"></param>
+        /// <param name="bank">Банк</param>
         public ATMMachine(Bank bank)
         {
             if (bank == null)
@@ -40,6 +40,5 @@ namespace ATM.BL
             else 
                 return false;
         }
-
     }
 }

@@ -8,7 +8,7 @@ namespace ATM.BL
     /// Счет клиента
     /// </summary>
      public class Account : IPayable
-    {
+     {
         #region Assigning events
         /// <summary>
         /// Событие добавления на счет
@@ -44,12 +44,14 @@ namespace ATM.BL
         /// <summary>
         /// Текущая сумма счета
         /// </summary>
-        private decimal CurrentSum { get; set; } = 0;
+        public decimal CurrentSum { get; set; } = 0;
         /// <summary>
         /// ID клиента
         /// </summary>
-        private int ID { get; }
-
+        public int ID { get; }
+        /// <summary>
+        /// Кредитная карта
+        /// </summary>
         public CreditCard Card { get; set; } = null;
         #endregion
 
@@ -189,5 +191,5 @@ namespace ATM.BL
             OnOpened(new AccountEventArgs($"Кредитная карта успешно привязана к аккаунту ID: {ID} Запомните ваш пароль: {Card.Password}", CurrentSum));
         }
         #endregion
-    }
+     }
 }

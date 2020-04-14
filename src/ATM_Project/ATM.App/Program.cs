@@ -33,11 +33,8 @@ namespace ATM.App
                     case "3":
                         alive = false;
                         break;
-
-
                 }
             }
-
         }
         /// <summary>
         /// Работа с банком
@@ -177,7 +174,6 @@ namespace ATM.App
             }
 
         }
-
         #region Task Handlers
         /// <summary>
         /// Обработчик события добавления на счет

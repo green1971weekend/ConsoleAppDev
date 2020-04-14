@@ -77,6 +77,36 @@ namespace ATM.BL
            
         }
         /// <summary>
+        /// Перегруженный метод открытия счета
+        /// </summary>
+        /// <param name="acc">Открываемый аккаунт</param>
+        public void OpenAccount(Account acc)
+        {
+            int id = GenerateID();
+            while (!check)
+            {
+                check = true;
+                foreach (KeyValuePair<int, Account> data in account_data)
+                {
+                    if (data.Key == id)
+                    {
+                        check = false;
+                        id = GenerateID();
+                    }
+                }
+            }
+            if (!account_data.ContainsKey(id)) //при конструкции TryGetValue out new_account в 64 строке new_account является пустым, почему?
+            {
+                account_data.Add(id, acc);
+                acc.Open();
+            }
+            else
+            {
+                throw new Exception("Ошибка создания счета. Аккаунт с данным ID уже существует"); //TODO: Какое исключение применять
+            }
+
+        }
+        /// <summary>
         /// Закрытие счета
         /// </summary>
         /// <param name="id">ID Клиента</param>
@@ -191,5 +221,10 @@ namespace ATM.BL
             int new_id = generated.Next(1000,100000);
             return new_id;
         }
+        /// <summary>
+        /// Получение количества аккаунтов
+        /// </summary>
+        /// <returns>Int32</returns>
+        public int GetAccountsNumber() => account_data.Count;
     }
 }
