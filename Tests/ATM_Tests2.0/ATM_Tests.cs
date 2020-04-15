@@ -2,8 +2,7 @@ using System;
 using Xunit;
 using ATM.BL;
 
-
-namespace ATM_Project_Tests
+namespace ATM_Tests2._0
 {
     public class BankTest
     {
@@ -21,7 +20,7 @@ namespace ATM_Project_Tests
             {
                 bank_instance.OpenAccount(acc);
             }
-            catch 
+            catch
             {
                 isOkay = false;
             }
@@ -99,22 +98,20 @@ namespace ATM_Project_Tests
             Assert.True(isException);
         }
         #endregion
+        [Fact]
+        public void When_PutSomeMoneyToExistingAccount_SumsAreEqual()
+        {
+            //Arrange
+            decimal expected = 4000;
+            Account acc = new Account("John", "Smith", 1234, 3000);
+            bank_instance.OpenAccount(acc);
 
-        //[Fact]
-        //public void When_PutSomeMoneyToExistingAccount_SumsAreEqual() 
-        //{
-        //    //Arrange
-        //    decimal expected = 4000;
-        //    Account acc = new Account("John", "Smith", 1234, 3000);
-        //    bank_instance.OpenAccount(accc);
+            //Act
+            bank_instance.Put(1000, 1234); // Тест не проходиться из-за несуществующего аккаунта, почему аккаунта не существует?
+            decimal actual = acc.CurrentSum;
 
-        //    //Act
-        //    bank_instance.Put(1000, 1234); // Тест не проходиться из-за несуществующего аккаунта, почему аккаунта не существует?
-        //    decimal actual = acc.CurrentSum;
-
-        //    //Assert
-        //    Assert.Equal(expected,actual);
-        //}
-
+            //Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
