@@ -35,15 +35,15 @@ namespace TaskHandler_v._2._0
                     switch(action_input)
                     {
                         case "1":
-                            Console.WriteLine();
+                            Console.Clear();
                             AddTask();
                             break;
                         case "2":
-                            Console.WriteLine();
+                            Console.Clear();
                             Display();
                             break;
                         case "3":
-                            Console.WriteLine();
+                            Console.Clear();
                             Delete();
                             break;
                         case "4":
@@ -61,7 +61,7 @@ namespace TaskHandler_v._2._0
 
                     }               
                 }
-                catch(ArgumentException ex)
+                catch(Exception ex)
                 {
                     Console.WriteLine($"{ex.Message}");
                 }
@@ -89,6 +89,8 @@ namespace TaskHandler_v._2._0
                     method_alive = DateTime.TryParse(Console.ReadLine(), out value_keeper);
                     if (!method_alive)
                         throw new ArgumentException("Введите коректные значения\n");
+                    if(value_keeper < DateTime.Now)
+                        throw new ArgumentException("Невозможно назначить задачу на прошедшее время\n");
                     else
                     {
                         str_date_time = value_keeper.ToString("D");
@@ -101,14 +103,13 @@ namespace TaskHandler_v._2._0
                         else { list.Add(task_input); }
                         method_alive = true;
                     }
+                    Console.WriteLine($"Задача: {task_input} успешно добавлена на {value_keeper.ToString("D")}\n");
                 }
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine($"{ex.Message}");
                 }
-            }
-            Console.Clear();
-            Console.WriteLine($"Задача: {task_input} успешно добавлена на {value_keeper.ToString("D")}\n");
+            }   
         }
         #endregion
 
