@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
 using ClientServer.BL;
 
 namespace Server
@@ -10,13 +7,12 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            var controller = new ClientServerController();
+            var controller = new ServerController();
 
             Console.WriteLine("Запуск сервера\n");
             Console.WriteLine("Ожидание входящих подключений...\n");
 
             controller.EstablishServerConnection();
-
         }
     }
 }

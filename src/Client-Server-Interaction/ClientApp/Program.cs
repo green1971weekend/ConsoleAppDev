@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
 using ClientServer.BL;
 
 namespace ClientApp
@@ -10,11 +7,17 @@ namespace ClientApp
     {
         static void Main(string[] args)
         {
-            var controller = new ClientServerController();
+            var controller = new ClientController();
 
             Console.WriteLine("Вас приветствует приложение Client\n");
+            Console.Write("Введите ваш логин: ");
+            string login = Console.ReadLine();
 
-            controller.EstablishClientConnection();
+            controller.EstablishClientConnection(login);
+
+
+            
+            
         }
 
     }
