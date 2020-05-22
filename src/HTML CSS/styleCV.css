@@ -1,0 +1,12 @@
+body{
+    background: linear-gradient(to right, rgb(161, 245, 231), rgb(255, 243, 140)) ;
+}
+h1{
+   color: rebeccapurple;
+}
+div{
+    margin: 28px;
+}
+.contacts{
+    margin-left: 1100px;
+}
