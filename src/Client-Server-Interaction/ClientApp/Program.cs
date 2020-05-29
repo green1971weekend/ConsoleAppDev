@@ -14,10 +14,6 @@ namespace ClientApp
             string login = Console.ReadLine();
 
             controller.EstablishClientConnection(login);
-
-
-            
-            
         }
 
     }

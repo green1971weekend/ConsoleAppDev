@@ -13,10 +13,12 @@ namespace ATM.BL
         /// Текущий банк
         /// </summary>
         private Bank _bank = null;
+
         /// <summary>
         /// Текущий аккаунт
         /// </summary>
         private Account CurrentAccount { get; set; }
+
         /// <summary>
         /// Конструктор создания банкомата
         /// </summary>
@@ -28,6 +30,7 @@ namespace ATM.BL
             _bank = bank;
 
         }
+
         /// <summary>
         /// Вставляем карту
         /// </summary>

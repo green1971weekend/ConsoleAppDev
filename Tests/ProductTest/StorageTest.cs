@@ -22,7 +22,6 @@ namespace Shop_Simulator_Test
             Assert.Equal(expected, actual);
         }
 
-
         [Fact]
         public void Phone_WhenSetZeroAmount_Return_ZeroAmount()
         {

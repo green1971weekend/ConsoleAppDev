@@ -107,13 +107,14 @@ namespace Example1
                         break;
                 }                
             } while (alive);
-
-
-
         }
 
-
-        public static void AddTask(Days day,int number)
+        /// <summary>
+        /// Добавление задачи.
+        /// </summary>
+        /// <param name="day">Конкретный день.</param>
+        /// <param name="number">Номер.</param>
+        public static void AddTask(Days day, int number)
         {
             Console.WriteLine($"Опишите задачу которую хотите добавить на {day}");
             string input_task = Console.ReadLine();
@@ -142,9 +143,13 @@ namespace Example1
                     sn_task.Add(input_task);
                     break;
             }
-            Console.WriteLine($"Задача добавлена в {day}\n");
 
+            Console.WriteLine($"Задача добавлена в {day}\n");
         }
+
+        /// <summary>
+        /// Отобразить задачу.
+        /// </summary>
         public static void Display()
         {
             Console.WriteLine("Выберите цифрой, день недели, задачи которого хотите отобразить: 1.Понедельник 2.Вторник 3.Среда 4.Четверг 5.Пятница 6.Суббота 7.Воскресенье\n");
@@ -209,6 +214,11 @@ namespace Example1
             }
         }
 
+        /// <summary>
+        /// Перенести задачу.
+        /// </summary>
+        /// <param name="from_day">С какого дня переносим.</param>
+        /// <param name="week_day">На какой день переносим.</param>
         public static void ReplaceTask(int from_day, List<string> week_day)
         {
             switch(from_day)
@@ -251,6 +261,10 @@ namespace Example1
 
             }
         }
+
+        /// <summary>
+        /// Очисить список задач.
+        /// </summary>
         public static void Clear()
         {
             Console.WriteLine("Выберите цифрой, день недели, содержимое которого хотите удалить: 1.Понедельник 2.Вторник 3.Среда 4.Четверг 5.Пятница 6.Суббота 7.Воскресенье\n");
@@ -296,13 +310,19 @@ namespace Example1
             }         
         }
 
+        /// <summary>
+        /// Отобразить текущее время.
+        /// </summary>
         static public void DisplayDateTime()
         {
             Console.Clear(); 
             Console.WriteLine(DateTime.Now);
         }
-
     }
+
+    /// <summary>
+    /// Дни недели.
+    /// </summary>
     enum Days
     {
         Monday = 1,

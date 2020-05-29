@@ -20,6 +20,7 @@ namespace Queue_simulator
         /// Рандомайзер числа клиентов
         /// </summary>
         Random client_amount = new Random();
+
         /// <summary>
         /// Рандомайзер времени обслуживания клиента
         /// </summary>

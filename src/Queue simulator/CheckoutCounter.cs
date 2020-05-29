@@ -15,6 +15,7 @@ namespace Queue_simulator
         /// </summary>
         /// <param name="notify"></param>
         public delegate void CheckoutCounterHandler(string notify);
+
         /// <summary>
         /// Событие обслуживания клиента
         /// </summary>
@@ -24,14 +25,17 @@ namespace Queue_simulator
         /// Номер кассы
         /// </summary>
         public int Number { get; set; }
+
         /// <summary>
         /// Рандомайзер числа клиентов
         /// </summary>
         Random client_amount = new Random();
+
         /// <summary>
         /// Рандомайзер времени обслуживания клиента
         /// </summary>
         Random random_service_time = new Random();
+
         /// <summary>
         /// Конструктор кассы
         /// </summary>
@@ -45,6 +49,7 @@ namespace Queue_simulator
             Served += handler;
             Number = number;
         }
+
         /// <summary>
         /// Метод вызова события
         /// </summary>
@@ -57,6 +62,7 @@ namespace Queue_simulator
             else
                 throw new ArgumentNullException("Уведомление не может быть пустым");
         }
+
         /// <summary>
         /// Событие при обслуживании клиента
         /// </summary>
@@ -65,6 +71,7 @@ namespace Queue_simulator
         {
             Notify(message,Served);
         }
+
         /// <summary>
         /// Симулятор определенной работы в кассе
         /// </summary>

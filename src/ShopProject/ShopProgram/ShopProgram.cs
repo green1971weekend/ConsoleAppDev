@@ -40,12 +40,15 @@ namespace ShopProgram
                     default:
                         Console.WriteLine("Введены некорректные значения");
                         break;
-
                 }
             }
         }
 
         #region AddProduct Method
+        /// <summary>
+        /// Добавить продукт в список
+        /// </summary>
+        /// <param name="store"></param>
         public static void AddProduct(Storage<Product> store)
         {
             bool alive = true;
@@ -110,6 +113,10 @@ namespace ShopProgram
         #endregion
 
         #region Display Products
+        /// <summary>
+        /// Отобразить список продуктов.
+        /// </summary>
+        /// <param name="store"></param>
         public static void Display(Storage<Product> store)
         {
             bool alive = true;
@@ -162,6 +169,10 @@ namespace ShopProgram
         #endregion
 
         #region DeleteProduct
+        /// <summary>
+        /// Удалить продукт.
+        /// </summary>
+        /// <param name="store">Список текущего продукта.</param>
         public static void Delete(Storage<Product> store)
         {
             bool alive = true;

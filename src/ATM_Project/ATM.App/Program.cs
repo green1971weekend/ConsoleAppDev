@@ -36,6 +36,7 @@ namespace ATM.App
                 }
             }
         }
+
         /// <summary>
         /// Работа с банком
         /// </summary>
@@ -112,6 +113,7 @@ namespace ATM.App
                 Console.WriteLine($"{ex.Message}");
             }
         }
+
         /// <summary>
         /// Работа с банкоматом
         /// </summary>
@@ -166,14 +168,13 @@ namespace ATM.App
                             break;
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
         }
+
         #region Task Handlers
         /// <summary>
         /// Обработчик события добавления на счет
@@ -183,6 +184,7 @@ namespace ATM.App
         {
             Console.WriteLine(args.Message);
         }
+
         /// <summary>
         ///  Обработчик события снятия со счета
         /// </summary>
@@ -191,6 +193,7 @@ namespace ATM.App
         {
             Console.WriteLine(args.Message);
         }
+
         /// <summary>
         ///  Обработчик события открытия счета
         /// </summary>
@@ -199,6 +202,7 @@ namespace ATM.App
         {
             Console.WriteLine(args.Message);
         }
+
         /// <summary>
         /// Обработчик события закрытия счета
         /// </summary>
@@ -207,6 +211,7 @@ namespace ATM.App
         {
             Console.WriteLine(args.Message);
         }
+
         /// <summary>
         /// Обработчик события отображения информации по счету
         /// </summary>

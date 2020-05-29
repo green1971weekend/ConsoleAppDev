@@ -5,7 +5,6 @@ namespace TaskHandler_v._2._0
 {
     class Program
     {
-        
         static string task_input;
         static string str_date_time;
 
@@ -13,6 +12,7 @@ namespace TaskHandler_v._2._0
         /// Store of DateTime value
         /// </summary>
         static DateTime value_keeper;
+
         /// <summary>
         /// The dictionary where key-value data exists.
         /// </summary>
@@ -58,16 +58,15 @@ namespace TaskHandler_v._2._0
                         default:
                             Console.Clear();
                             throw new ArgumentException("Введите корректные значения\n");
-
                     }               
                 }
                 catch(Exception ex)
                 {
                     Console.WriteLine($"{ex.Message}");
                 }
-
             }
         }
+
         #region Add a new task
         /// <summary>
         /// Add new task to the list.

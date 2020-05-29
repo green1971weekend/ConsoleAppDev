@@ -14,6 +14,7 @@ namespace ATM.BL
         /// Название банка
         /// </summary>
         public string BankName { get; } = "Cбербанк";
+
         /// <summary>
         /// Конструктор создания банка
         /// </summary>
@@ -22,10 +23,12 @@ namespace ATM.BL
         {
             BankName = name;
         }
+
         /// <summary>
         /// Словарь где ключ - ID клиента, а значение - его аккаунт
         /// </summary>
         Dictionary<int, Account> account_data = new Dictionary<int, Account>();
+
         /// <summary>
         /// Метод открытия счета в банке
         /// </summary>
@@ -76,6 +79,7 @@ namespace ATM.BL
             }
            
         }
+
         /// <summary>
         /// Перегруженный метод открытия счета
         /// </summary>
@@ -106,6 +110,7 @@ namespace ATM.BL
             }
 
         }
+
         /// <summary>
         /// Закрытие счета
         /// </summary>
@@ -123,6 +128,7 @@ namespace ATM.BL
             else
                 throw new Exception("Данного аккаунта не существует");
         }
+
         /// <summary>
         /// Добавление на счет
         /// </summary>
@@ -140,6 +146,7 @@ namespace ATM.BL
             else
                 throw new Exception("Данного аккаунта не существует");
         }
+
         /// <summary>
         /// Снятие со счета
         /// </summary>
@@ -157,6 +164,7 @@ namespace ATM.BL
             else
                 throw new Exception("Данного аккаунта не существует");
         }
+
         /// <summary>
         /// Получить полную информацию о клиенте
         /// </summary>
@@ -173,6 +181,7 @@ namespace ATM.BL
             else
                 throw new Exception("Данного аккаунта не существует");
         }
+
         /// <summary>
         /// Cоздание кредитной карты
         /// </summary>
@@ -193,6 +202,7 @@ namespace ATM.BL
             else
                 throw new Exception("Данного аккаунта не существует");
         }
+
         /// <summary>
         /// Получить текущий аккаунт
         /// </summary>
@@ -221,6 +231,7 @@ namespace ATM.BL
             int new_id = generated.Next(1000,100000);
             return new_id;
         }
+
         /// <summary>
         /// Получение количества аккаунтов
         /// </summary>

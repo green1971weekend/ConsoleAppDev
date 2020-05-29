@@ -37,18 +37,22 @@ namespace ATM.BL
         /// Имя
         /// </summary>
         private string Name { get; }
+
         /// <summary>
         /// Фамилия
         /// </summary>
         private string Surname { get; }
+
         /// <summary>
         /// Текущая сумма счета
         /// </summary>
         public decimal CurrentSum { get; set; } = 0;
+
         /// <summary>
         /// ID клиента
         /// </summary>
         public int ID { get; }
+
         /// <summary>
         /// Кредитная карта
         /// </summary>
@@ -59,6 +63,7 @@ namespace ATM.BL
         /// Конструктор счета по умолчанию
         /// </summary>
         public Account() { }
+
         /// <summary>
         /// Конструктор счета с параметрами
         /// </summary>
@@ -82,7 +87,9 @@ namespace ATM.BL
             ID = id;
             CurrentSum = sum;
         }
+
         #region Invoke events
+
         /// <summary>
         /// Базовый метод вызова событий 
         /// </summary>
@@ -95,6 +102,7 @@ namespace ATM.BL
             else
                 handler?.Invoke(args);
         }
+
         /// <summary>
         /// Событие при добавлении средств на счет
         /// </summary>
@@ -103,6 +111,7 @@ namespace ATM.BL
         {
             CallEvent(args, Added);
         }
+
         /// <summary>
         /// Событие при списании средств со счета
         /// </summary>
@@ -111,6 +120,7 @@ namespace ATM.BL
         {
             CallEvent(args, Withdrawed);
         }
+
         /// <summary>
         /// Событие при открытии счета
         /// </summary>
@@ -119,6 +129,7 @@ namespace ATM.BL
         {
             CallEvent(args, Opened);
         }
+
         /// <summary>
         /// Событие при закрытии счета
         /// </summary>
@@ -127,6 +138,7 @@ namespace ATM.BL
         {
             CallEvent(args, Closed);
         }
+
         /// <summary>
         /// Событие при отображении текущего счета
         /// </summary>
@@ -138,6 +150,7 @@ namespace ATM.BL
         #endregion
 
         #region Account methods
+
         /// <summary>
         /// Метод добавления на счет
         /// </summary>
@@ -150,6 +163,7 @@ namespace ATM.BL
                 CurrentSum += sum;
                 OnAdded(new AccountEventArgs($"На счет поступила сумма в размере {sum}", sum));
         }
+
         /// <summary>
         /// Метод снятия со счета
         /// </summary>
@@ -162,6 +176,7 @@ namespace ATM.BL
                 CurrentSum -= sum;
                 OnWithdrawed(new AccountEventArgs($"Со счета списана сумма в размере {sum}", CurrentSum));
         }
+
         /// <summary>
         /// Метод открытия счета
         /// </summary>
@@ -169,6 +184,7 @@ namespace ATM.BL
         {
             OnOpened(new AccountEventArgs($"Открыт новый клиентский счет. ID cчета - {ID}", CurrentSum));
         }
+
         /// <summary>
         /// Метод закрытия счета
         /// </summary>
@@ -176,6 +192,7 @@ namespace ATM.BL
         {
             OnClosed(new AccountEventArgs($"Kлиентский счет успешно закрыт. ID cчета - {ID}", CurrentSum));
         }
+
         /// <summary>
         /// Метод получения полной информации о клиенте
         /// </summary>
@@ -183,6 +200,7 @@ namespace ATM.BL
         {
             OnDisplayed(new AccountEventArgs($"Имя: {Name}, Фамилия: {Surname}, Текущая сумма на счете: {CurrentSum}, ID: {ID}", CurrentSum));
         }
+
         /// <summary>
         /// Создать новую карту для аккаунта
         /// </summary>

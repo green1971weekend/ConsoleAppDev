@@ -194,13 +194,14 @@ namespace ShopLibrary
                 Console.WriteLine();
             }
         }
-/// <summary>
-/// Удалить товар.
-/// </summary>
-/// <param name="type">Тип товара</param>
-/// <param name="comp">Компания</param>
-/// <param name="model">Модель</param>
-/// <param name="amount">Количество</param>
+
+        /// <summary>
+        /// Удалить товар.
+        /// </summary>
+        /// <param name="type">Тип товара</param>
+        /// <param name="comp">Компания</param>
+        /// <param name="model">Модель</param>
+        /// <param name="amount">Количество</param>
         public void DeleteProduct(ProductType type, string comp, string model, int amount)
         {
             try
@@ -253,6 +254,5 @@ namespace ShopLibrary
                 Console.WriteLine($"{ex.Message}");
             }
         }
-
     }
 }

@@ -11,11 +11,13 @@ namespace ATM.BL
         /// </summary>
         /// <param name="sum">Сумма добавления</param>
         void Put(decimal sum);
+
         /// <summary>
         /// Снять деньги со счета
         /// </summary>
         /// <param name="sum">Сумма снятия</param>
         void Withdraw(decimal sum);
+
         /// <summary>
         /// Метод получения полной информации о клиенте
         /// </summary>

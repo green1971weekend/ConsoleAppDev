@@ -78,7 +78,6 @@ namespace ClientServer.BL
             {
                 Console.WriteLine(ex.Message);
             }
-
         }
 
         /// <summary>

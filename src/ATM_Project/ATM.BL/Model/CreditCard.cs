@@ -13,14 +13,17 @@ namespace ATM.BL
         /// Банк привязанный к карте
         /// </summary>
         public string Bank { get; } = "Cбербанк";
+
         /// <summary>
         /// Пароль карты
         /// </summary>
         public int Password { get; }
+
         /// <summary>
         /// ID карты, совпадает с ID аккаунта
         /// </summary>
         private int ID { get; }
+
         /// <summary>
         /// Конструктор создания карты
         /// </summary>
@@ -30,6 +33,7 @@ namespace ATM.BL
             ID = id;
             Password = GeneratePassword();
         }
+
         /// <summary>
         /// Генератор 4-х значного пароля для карты
         /// </summary>

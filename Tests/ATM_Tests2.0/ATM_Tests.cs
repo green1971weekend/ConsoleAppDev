@@ -9,6 +9,7 @@ namespace ATM_Tests2._0
         Bank bank_instance = new Bank("BankInstance");
         Account acc = new Account("John", "Smith", 1234, 3000);
         #region OpenCloseTests
+
         [Fact]
         public void If_OpenAccountWentWell_ReturnTrue()
         {
@@ -28,6 +29,7 @@ namespace ATM_Tests2._0
             //Assert
             Assert.True(isOkay);
         }
+
         [Fact]
         public void When_TryToClose_NoneExistingAccount_ReturnException()
         {
@@ -47,7 +49,9 @@ namespace ATM_Tests2._0
             //Assert
             Assert.True(isException);
         }
+
         #endregion
+
         #region PutWithdrawTests
         [Fact]
         public void When_PutSomeMoneyToExistingAccount_IncreaseAccountCurrentSum()
@@ -98,6 +102,7 @@ namespace ATM_Tests2._0
             Assert.True(isException);
         }
         #endregion
+
         [Fact]
         public void When_PutSomeMoneyToExistingAccount_SumsAreEqual()
         {

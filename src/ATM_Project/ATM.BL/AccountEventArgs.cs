@@ -18,10 +18,12 @@ namespace ATM.BL
         /// Сообщение события
         /// </summary>
         public string Message { get; }
+
         /// <summary>
         /// Сумма на которую изменился счет
         /// </summary>
         public decimal Sum { get; }
+
         /// <summary>
         /// Конструктор обработки события
         /// </summary>

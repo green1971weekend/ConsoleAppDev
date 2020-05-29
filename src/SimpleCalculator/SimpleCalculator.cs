@@ -18,7 +18,6 @@ namespace SimpleCalculator
                 Console.WriteLine("You have inputted an invalid symbol, please input the digital value");
             }
 
-            
             Console.WriteLine("Input the second number");//ввод второго числа с проверкой на подлинность числа
             while (!Double.TryParse(Console.ReadLine(), out second_number_input))
             {
@@ -53,11 +52,6 @@ namespace SimpleCalculator
 
             Console.WriteLine($"Your answer is {result}");
             Console.ReadKey();
-
-
-
-
-
         }
     }
 }

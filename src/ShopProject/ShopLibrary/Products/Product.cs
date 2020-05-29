@@ -54,11 +54,5 @@ namespace ShopLibrary
         {
             Console.WriteLine($"Company:{Company}, Model:{Model}, Amount:{Amount}");
         }
-
-
-
-
-        
-
     }
 }

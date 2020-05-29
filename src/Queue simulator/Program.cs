@@ -25,6 +25,7 @@ namespace Queue_simulator
 
             }  
         }
+
         /// <summary>
         /// Обработчик уведомления обычной кассы
         /// </summary>
@@ -33,6 +34,7 @@ namespace Queue_simulator
         {
             Console.WriteLine(message);
         }
+
         /// <summary>
         /// Обработчик уведомления быстрой кассы
         /// </summary>
@@ -43,6 +45,5 @@ namespace Queue_simulator
             Console.WriteLine(message);
             Console.ResetColor();
         }
-
     }
 }
